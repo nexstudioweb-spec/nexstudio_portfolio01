@@ -1,0 +1,596 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmileCraft Dental — Mangalore's Premium Dental Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0c0c0c;
+      --ink2: #181818;
+      --ink3: #242424;
+      --surface: #f5f0e8;
+      --surface2: #ede7da;
+      --white: #fdfcfa;
+      --gold: #c49a3c;
+      --gold2: #e8c06a;
+      --gold-pale: #f5e9c8;
+      --sage: #3d7a5a;
+      --muted: #6b6560;
+      --line: rgba(12,12,12,.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 64px;
+      background: rgba(253,252,250,.96);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--line);
+      animation: navIn .6s ease both;
+    }
+    @keyframes navIn { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+    .nav-logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900; color:var(--ink); }
+    .nav-logo span { color:var(--gold); }
+    .nav-links { display:flex; align-items:center; gap:36px; }
+    .nav-links a { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-cta { display:inline-flex; align-items:center; gap:8px; padding:11px 26px; border-radius:2px; background:var(--ink); color:var(--white); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; font-weight:700; transition:background .25s, transform .2s; }
+    .nav-cta:hover { background:var(--gold); transform:translateY(-1px); }
+
+    /* HERO */
+    .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:80px; }
+    .hero-left { display:flex; flex-direction:column; justify-content:center; padding:90px 64px; background:var(--white); animation:fadeLeft .8s ease .2s both; }
+    @keyframes fadeLeft { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:translateX(0)} }
+    .hero-eyebrow { display:flex; align-items:center; gap:14px; font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-bottom:32px; }
+    .hero-eyebrow::after { content:''; flex:1; height:1px; background:var(--gold-pale); max-width:52px; }
+    .hero-h1 { font-family:'Playfair Display',serif; font-size:clamp(3.4rem,5.8vw,5.6rem); font-weight:900; line-height:1.02; letter-spacing:-.03em; margin-bottom:28px; color:var(--ink); }
+    .hero-h1 em { font-style:italic; color:var(--gold); }
+    .hero-lead { font-size:1.05rem; color:var(--muted); line-height:1.8; font-weight:400; max-width:420px; margin-bottom:48px; }
+    .hero-actions { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--ink); color:#fff; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; font-weight:700; border-radius:2px; transition:background .25s, transform .2s; border:none; cursor:pointer; font-family:'Outfit',sans-serif; }
+    .btn-primary:hover { background:var(--gold); transform:translateY(-2px); }
+    .btn-outline { display:inline-flex; align-items:center; gap:8px; padding:16px 30px; border:1.5px solid var(--ink); color:var(--ink); font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; font-weight:700; border-radius:2px; transition:border-color .25s, color .25s, transform .2s; }
+    .btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+    .hero-trust { display:flex; align-items:center; gap:28px; margin-top:56px; padding-top:40px; border-top:1px solid var(--line); }
+    .trust-stat { text-align:center; }
+    .trust-num { display:block; font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:900; line-height:1; color:var(--ink); }
+    .trust-label { font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--muted); margin-top:4px; }
+    .trust-divider { width:1px; height:44px; background:var(--line); }
+    .hero-right { position:relative; background:var(--ink); overflow:hidden; animation:fadeRight .8s ease .4s both; }
+    @keyframes fadeRight { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
+    .hero-img-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+    .dental-visual {
+      width:min(640px, calc(100% - 48px));
+      height:min(760px, calc(100vh - 160px));
+      position:relative;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      grid-template-rows:1fr 1fr;
+      gap:18px;
+      padding:24px;
+      align-items:stretch;
+    }
+    .hero-photo {
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      min-height:0;
+      background:#111;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 22px 70px rgba(0,0,0,.35);
+    }
+    .hero-photo::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(12,12,12,0) 35%, rgba(12,12,12,.68) 100%);
+      pointer-events:none;
+    }
+    .hero-photo img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.02);
+    }
+    .hero-photo-main { grid-row:1 / span 2; }
+    .hero-photo-top { grid-column:2; grid-row:1; }
+    .hero-photo-bottom { grid-column:2; grid-row:2; }
+    .hero-photo-label {
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:1;
+      color:#fff;
+    }
+    .hero-photo-label strong {
+      display:block;
+      font-family:'Playfair Display',serif;
+      font-size:1.22rem;
+      font-weight:900;
+      line-height:1.1;
+      margin-bottom:4px;
+    }
+    .hero-photo-label span {
+      display:block;
+      font-size:.68rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:700;
+      color:rgba(255,255,255,.62);
+    }
+    .dv-card { position:absolute; background:linear-gradient(180deg, rgba(22,22,22,.96), rgba(34,34,34,.92)); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:22px; backdrop-filter:blur(10px); box-shadow:0 18px 40px rgba(0,0,0,.26); z-index:4; }
+    .dv-main { top:36px; left:34px; width:236px; text-align:center; z-index:5; }
+    .dv-tooth { width:72px; height:72px; margin:0 auto 16px; background:rgba(196,154,60,.15); border-radius:50% 50% 46% 46%/60% 60% 40% 40%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+    .dv-doc-name { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:900; color:#fff; line-height:1.1; }
+    .dv-doc-title { font-size:.72rem; color:rgba(255,255,255,.52); margin-top:6px; font-weight:500; line-height:1.35; }
+    .dv-stars { color:var(--gold2); font-size:.9rem; margin-top:12px; letter-spacing:2px; }
+    .dv-rating { font-size:.72rem; color:rgba(255,255,255,.4); margin-top:4px; }
+    .dv-appt { bottom:36px; left:34px; width:214px; z-index:5; }
+    .dv-appt-label { font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold2); margin-bottom:10px; font-weight:700; }
+    .dv-appt-date { font-family:'Playfair Display',serif; font-size:1.02rem; font-weight:900; color:#fff; line-height:1.18; }
+    .dv-appt-time { font-size:.72rem; color:rgba(255,255,255,.55); margin-top:6px; line-height:1.35; }
+    .dv-badge { position:absolute; top:-10px; right:-10px; background:var(--sage); color:#fff; font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:5px 12px; border-radius:99px; }
+    .dv-pill { top:34px; right:34px; display:flex; align-items:center; gap:10px; width:180px; padding:14px 18px; }
+    .dv-pill-dot { width:8px; height:8px; border-radius:50%; background:var(--sage); flex-shrink:0; }
+    .dv-pill-text { font-size:.7rem; color:rgba(255,255,255,.8); line-height:1.5; }
+    .hero-right::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--gold); z-index:2; }
+    .hero-bg-text { position:absolute; bottom:-20px; right:-10px; font-family:'Playfair Display',serif; font-size:9rem; font-weight:900; line-height:1; color:rgba(255,255,255,.025); pointer-events:none; letter-spacing:-.04em; user-select:none; }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow:hidden; border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); padding:16px 0; background:var(--ink); }
+    .marquee-track { display:flex; animation:marquee 22s linear infinite; width:max-content; }
+    @keyframes marquee { to{transform:translateX(-50%)} }
+    .marquee-item { display:flex; align-items:center; gap:16px; padding:0 36px; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,.35); white-space:nowrap; }
+    .marquee-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); }
+
+    /* SECTIONS */
+    .section { padding:110px 64px; max-width:1240px; margin:0 auto; }
+    .section-eyebrow { display:flex; align-items:center; gap:14px; font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-bottom:20px; }
+    .section-eyebrow::before { content:''; width:28px; height:2px; background:var(--gold); }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,4.2vw,4rem); font-weight:900; line-height:1.05; letter-spacing:-.03em; color:var(--ink); }
+    .section-title em { font-style:italic; color:var(--gold); }
+    .section-lead { font-size:1rem; color:var(--muted); line-height:1.8; max-width:500px; margin-top:18px; }
+
+    /* SERVICES */
+    .services-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; flex-wrap:wrap; gap:24px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .service-card { padding:48px 36px; background:var(--surface); transition:background .3s; cursor:default; }
+    .service-card:hover { background:var(--ink); }
+    .service-card:hover .svc-title,.service-card:hover .svc-desc,.service-card:hover .svc-num { color:rgba(255,255,255,.9); }
+    .service-card:hover .svc-icon { background:rgba(255,255,255,.06); }
+    .svc-num { font-size:.64rem; letter-spacing:.2em; font-weight:700; color:var(--gold); margin-bottom:24px; }
+    .svc-icon { width:52px; height:52px; border-radius:8px; background:var(--white); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:20px; transition:background .3s; }
+    .svc-title { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:800; margin-bottom:14px; transition:color .3s; color:var(--ink); }
+    .svc-desc { font-size:.88rem; color:var(--muted); line-height:1.75; transition:color .3s; }
+
+    /* GALLERY */
+    #gallery .section-title { max-width:900px; }
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:18px;
+      margin-top:52px;
+    }
+    .gallery-card {
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      min-height:260px;
+      background:var(--surface);
+      border:1px solid var(--line);
+      box-shadow:0 18px 48px rgba(12,12,12,.08);
+    }
+    .gallery-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.01);
+    }
+    .gallery-card::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(12,12,12,0) 38%, rgba(12,12,12,.72) 100%);
+      pointer-events:none;
+    }
+    .gallery-caption {
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:16px;
+      z-index:1;
+      color:#fff;
+    }
+    .gallery-caption strong {
+      display:block;
+      font-family:'Playfair Display',serif;
+      font-size:1.2rem;
+      font-weight:900;
+      line-height:1.1;
+      margin-bottom:4px;
+    }
+    .gallery-caption span {
+      display:block;
+      font-size:.64rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:700;
+      color:rgba(255,255,255,.62);
+    }
+    .gallery-wide { grid-column:span 7; min-height:320px; }
+    .gallery-tall { grid-column:span 5; min-height:320px; }
+    .gallery-half { grid-column:span 4; }
+
+    /* ABOUT */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:88px; align-items:center; }
+    .about-visual { position:relative; background:var(--ink); border-radius:4px; overflow:hidden; aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; }
+    .about-visual-inner { text-align:center; color:rgba(255,255,255,.72); font-family:'Playfair Display',serif; font-size:1rem; letter-spacing:.08em; line-height:1.55; text-shadow:0 2px 12px rgba(0,0,0,.25); }
+    .about-visual-inner span { display:block; font-size:5rem; margin-bottom:12px; opacity:.58; filter:drop-shadow(0 3px 10px rgba(0,0,0,.28)); }
+    .about-gold-bar { position:absolute; bottom:0; left:0; right:0; height:4px; background:var(--gold); }
+    .about-badge { position:absolute; bottom:32px; right:-24px; background:var(--white); border-radius:10px; padding:18px 22px; box-shadow:0 16px 48px rgba(0,0,0,.18); text-align:center; }
+    .about-badge-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--gold); }
+    .about-badge-text { font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--muted); }
+    .about-quote { font-family:'Playfair Display',serif; font-size:1.4rem; font-style:italic; font-weight:700; color:var(--ink); line-height:1.5; border-left:3px solid var(--gold); padding-left:22px; margin:30px 0; }
+    .about-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+    .tag { padding:7px 16px; background:var(--white); border:1.5px solid var(--line); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:var(--ink); border-radius:2px; }
+
+    /* PROCESS */
+    #process { background:var(--ink); padding:110px 64px; }
+    #process .section-eyebrow { color:var(--gold2); }
+    #process .section-eyebrow::before { background:var(--gold2); }
+    #process .section-title { color:#fff; }
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:64px; background:rgba(255,255,255,.06); }
+    .process-step { padding:48px 32px; background:var(--ink); position:relative; }
+    .process-step::after { content:attr(data-num); position:absolute; top:24px; right:24px; font-family:'Playfair Display',serif; font-size:4.5rem; font-weight:900; line-height:1; color:rgba(255,255,255,.04); }
+    .ps-icon { font-size:1.6rem; margin-bottom:20px; }
+    .ps-title { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:800; color:#fff; margin-bottom:12px; }
+    .ps-desc { font-size:.86rem; color:rgba(255,255,255,.45); line-height:1.75; }
+    .ps-line { width:28px; height:2px; background:var(--gold); margin-bottom:22px; }
+
+    /* TESTIMONIALS */
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+    .testi-card { background:var(--surface); padding:36px; border-radius:4px; border:1px solid var(--line); }
+    .testi-stars { color:var(--gold); letter-spacing:2px; font-size:.95rem; margin-bottom:18px; }
+    .testi-text { font-family:'Playfair Display',serif; font-size:1.05rem; line-height:1.7; font-style:italic; font-weight:700; color:var(--ink); margin-bottom:28px; }
+    .testi-person { display:flex; align-items:center; gap:14px; }
+    .testi-avatar { width:46px; height:46px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:800; }
+    .testi-name { font-size:.9rem; font-weight:700; color:var(--ink); }
+    .testi-role { font-size:.74rem; color:var(--muted); margin-top:2px; }
+
+    /* BOOKING */
+    #booking { background:var(--ink); padding:110px 64px; }
+    .booking-wrap { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:88px; align-items:start; }
+    #booking .section-eyebrow { color:var(--gold2); }
+    #booking .section-eyebrow::before { background:var(--gold2); }
+    #booking .section-title { color:#fff; }
+    #booking .section-lead { color:rgba(255,255,255,.5); }
+    .booking-features { margin-top:40px; display:flex; flex-direction:column; gap:18px; }
+    .bf-item { display:flex; align-items:center; gap:14px; color:rgba(255,255,255,.7); font-size:.9rem; font-weight:500; }
+    .bf-dot { width:8px; height:8px; border-radius:50%; background:var(--sage); flex-shrink:0; }
+    .booking-form { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:44px; }
+    .form-title { font-family:'Playfair Display',serif; font-size:1.7rem; color:#fff; margin-bottom:32px; font-weight:900; }
+    .form-group { margin-bottom:20px; }
+    .form-group label { display:block; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,.4); margin-bottom:8px; }
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:14px 16px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:4px; color:#fff; font-family:'Outfit',sans-serif; font-size:.9rem; font-weight:500; transition:border-color .2s; appearance:none; }
+    .form-group input::placeholder,.form-group textarea::placeholder { color:rgba(255,255,255,.2); }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--gold); }
+    .form-group select option { background:#1a1a1a; color:#fff; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form-submit { width:100%; padding:16px; background:var(--gold); color:var(--ink); font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; font-weight:800; border:none; border-radius:4px; cursor:pointer; margin-top:10px; transition:background .25s, transform .2s; font-family:'Outfit',sans-serif; }
+    .form-submit:hover { background:var(--gold2); transform:translateY(-2px); }
+
+    /* FOOTER */
+    footer { background:#080808; border-top:1px solid rgba(255,255,255,.06); padding:64px 64px 40px; }
+    .footer-inner { max-width:1240px; margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:52px; flex-wrap:wrap; gap:36px; }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900; color:#fff; }
+    .footer-logo span { color:var(--gold); }
+    .footer-tagline { font-size:.8rem; color:rgba(255,255,255,.3); margin-top:8px; font-weight:500; }
+    .footer-links { display:flex; gap:44px; flex-wrap:wrap; }
+    .footer-col h4 { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,.35); margin-bottom:18px; }
+    .footer-col a { display:block; font-size:.85rem; font-weight:500; color:rgba(255,255,255,.5); text-decoration:none; margin-bottom:12px; transition:color .2s; }
+    .footer-col a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .footer-copy,.footer-made { font-size:.78rem; color:rgba(255,255,255,.25); font-weight:500; }
+    .footer-made span { color:var(--gold); }
+
+    /* WA FLOAT */
+    .wa-float { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.5rem; text-decoration:none; box-shadow:0 8px 32px rgba(37,211,102,.4); transition:transform .25s; animation:waPulse 3s ease-in-out infinite; }
+    .wa-float:hover { transform:scale(1.12); }
+    @keyframes waPulse { 0%,100%{box-shadow:0 8px 30px rgba(37,211,102,.4)} 50%{box-shadow:0 8px 42px rgba(37,211,102,.7)} }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width:900px) {
+      nav { padding:18px 24px; }
+      .nav-links { display:none; }
+      .hero { grid-template-columns:1fr; }
+      .hero-left { padding:60px 24px; }
+      .hero-right { min-height:380px; }
+      .section { padding:72px 24px; }
+      .services-grid { grid-template-columns:1fr; gap:2px; }
+      .gallery-grid { grid-template-columns:1fr; }
+      .gallery-wide,.gallery-tall,.gallery-half { grid-column:span 1; min-height:240px; }
+      .about-grid { grid-template-columns:1fr; gap:44px; }
+      .process-grid { grid-template-columns:1fr 1fr; gap:1px; }
+      .testi-grid { grid-template-columns:1fr; }
+      .booking-wrap { grid-template-columns:1fr; gap:44px; }
+      #booking, #process { padding:72px 24px; }
+      footer { padding:52px 24px 36px; }
+      .footer-top { flex-direction:column; }
+    }
+    @media (max-width:520px) {
+      .hero-trust { flex-wrap:wrap; gap:16px; }
+      .trust-divider { display:none; }
+      .process-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Smile<span>Craft</span> Dental</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">Our Doctors</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#booking">Contact</a>
+    </div>
+    <a class="nav-cta" href="#booking">Book Appointment →</a>
+  </nav>
+
+    <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Premium Dental Care · Mangalore</div>
+      <h1 class="hero-h1">Your Perfect<br>Smile is Our<br><em>Life's Work.</em></h1>
+      <p class="hero-lead">Expert dental care combining advanced technology with a gentle touch. From routine checkups to complete smile transformations - we treat every patient like family.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#booking">Book a Free Consultation →</a>
+        <a class="btn-outline" href="#services">Our Services</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-stat"><span class="trust-num">2,400+</span><span class="trust-label">Happy Patients</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-stat"><span class="trust-num">15</span><span class="trust-label">Years Experience</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-stat"><span class="trust-num">4.9★</span><span class="trust-label">Google Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-text">SMILE</div>
+      <div class="hero-img-wrap">
+        <div class="dental-visual">
+          <div class="hero-photo hero-photo-main">
+            <img src="https://images.pexels.com/photos/6812480/pexels-photo-6812480.jpeg?cs=srgb&dl=pexels-pavel-danilyuk-6812480.jpg&fm=jpg" alt="Modern dental chair in a premium clinic">
+            <div class="hero-photo-label"><strong>Premium Chair Suite</strong><span>Patient experience first</span></div>
+          </div>
+          <div class="hero-photo hero-photo-top">
+            <img src="https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?cs=srgb&dl=pexels-shvetsa-3845729.jpg&fm=jpg" alt="Detailed dental instruments in a clean clinic">
+            <div class="hero-photo-label"><strong>Precision Tools</strong><span>Technology-led treatment</span></div>
+          </div>
+          <div class="hero-photo hero-photo-bottom">
+            <img src="https://images.pexels.com/photos/287237/pexels-photo-287237.jpeg?cs=srgb&dl=pexels-fr3nks-287237.jpg&fm=jpg" alt="Bright dental clinic room with advanced equipment">
+            <div class="hero-photo-label"><strong>Bright Operatory</strong><span>Clean, calm, modern</span></div>
+          </div>
+          <div class="dv-card dv-main">
+            <div class="dv-tooth">🦷</div>
+            <div class="dv-doc-name">Dr. Priya Shetty</div>
+            <div class="dv-doc-title">BDS, MDS - Cosmetic Dentistry</div>
+            <div class="dv-stars">★★★★★</div>
+            <div class="dv-rating">4.9 · 312 reviews</div>
+          </div>
+          <div class="dv-card dv-appt">
+            <div class="dv-badge">Confirmed</div>
+            <div class="dv-appt-label">Next Appointment</div>
+            <div class="dv-appt-date">Tuesday, 25 April</div>
+            <div class="dv-appt-time">10:30 AM · Teeth Cleaning</div>
+          </div>
+          <div class="dv-card dv-pill">
+            <div class="dv-pill-dot"></div>
+            <div class="dv-pill-text">Clinic open now<br><span style="color:rgba(255,255,255,.4)">Mon-Sat 9am-7pm</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class='marquee-wrap'>
+    <div class="marquee-track">
+      <div class="marquee-item"><div class="marquee-dot"></div>Teeth Whitening</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Dental Implants</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Braces &amp; Aligners</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Root Canal</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Smile Makeover</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Kids Dentistry</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Crowns &amp; Veneers</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Emergency Care</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Teeth Whitening</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Dental Implants</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Braces &amp; Aligners</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Root Canal</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Smile Makeover</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Kids Dentistry</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Crowns &amp; Veneers</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Emergency Care</div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="section reveal">
+      <div class="services-header">
+        <div>
+          <div class="section-eyebrow">What We Offer</div>
+          <h2 class="section-title">Complete dental care<br>under one <em>roof.</em></h2>
+        </div>
+      <p class="section-lead">Every treatment by qualified specialists using the latest dental technology — in a clinic that feels calm, not clinical.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card"><div class="svc-num">01</div><div class="svc-icon">✨</div><div class="svc-title">Cosmetic Dentistry</div><div class="svc-desc">Veneers, whitening, smile makeovers and bonding. We craft smiles that look completely natural and feel completely you.</div></div>
+        <div class="service-card"><div class="svc-num">02</div><div class="svc-icon">🦷</div><div class="svc-title">Dental Implants</div><div class="svc-desc">Permanent tooth replacement that looks, feels and functions like your natural teeth. Titanium implants with ceramic crowns.</div></div>
+        <div class="service-card"><div class="svc-num">03</div><div class="svc-icon">😁</div><div class="svc-title">Orthodontics</div><div class="svc-desc">Metal braces, ceramic braces and clear aligners for children and adults. Straighten your teeth discreetly and comfortably.</div></div>
+        <div class="service-card"><div class="svc-num">04</div><div class="svc-icon">🩺</div><div class="svc-title">General Dentistry</div><div class="svc-desc">Routine cleanings, fillings, root canals, extractions and gum treatments. Preventive care that keeps bigger problems away.</div></div>
+        <div class="service-card"><div class="svc-num">05</div><div class="svc-icon">👶</div><div class="svc-title">Paediatric Dentistry</div><div class="svc-desc">Gentle, fun dental care for children from age 2. We build positive experiences so your child never fears the dentist.</div></div>
+        <div class="service-card"><div class="svc-num">06</div><div class="svc-icon">🚨</div><div class="svc-title">Emergency Care</div><div class="svc-desc">Same-day appointments for broken teeth, severe pain, lost fillings and dental injuries. Call us — we're here for you.</div></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="gallery" style="background:var(--surface)">
+    <div class="section reveal">
+      <div class="section-eyebrow">Clinic Showcase</div>
+      <h2 class="section-title">A portfolio that makes a dental practice feel <em>premium</em> before the first call.</h2>
+        <p class="section-lead">These visuals are selected to sell trust fast: modern chairs, spotless rooms, precision equipment, and the kind of interior quality dentists want patients to see first.</p>
+      <div class="gallery-grid">
+        <figure class="gallery-card gallery-wide">
+          <img src="https://images.pexels.com/photos/6812480/pexels-photo-6812480.jpeg?cs=srgb&dl=pexels-pavel-danilyuk-6812480.jpg&fm=jpg" alt="Modern dental chair and clinic room">
+          <figcaption class="gallery-caption"><strong>Modern Chair Room</strong><span>High-end patient care space</span></figcaption>
+        </figure>
+        <figure class="gallery-card gallery-tall">
+          <img src="https://images.pexels.com/photos/4687359/pexels-photo-4687359.jpeg?cs=srgb&dl=pexels-polina-zimmerman-4687359.jpg&fm=jpg" alt="Dentist working with precision equipment">
+          <figcaption class="gallery-caption"><strong>Precision Workflow</strong><span>Advanced clinical handling</span></figcaption>
+        </figure>
+        <figure class="gallery-card gallery-half">
+          <img src="https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?cs=srgb&dl=pexels-shvetsa-3845729.jpg&fm=jpg" alt="Dental tools arranged in a modern clinic">
+          <figcaption class="gallery-caption"><strong>Tool Detail</strong><span>Clean, professional setup</span></figcaption>
+        </figure>
+        <figure class="gallery-card gallery-half">
+          <img src="https://images.pexels.com/photos/287237/pexels-photo-287237.jpeg?cs=srgb&dl=pexels-fr3nks-287237.jpg&fm=jpg" alt="Bright dental treatment room with equipment">
+          <figcaption class="gallery-caption"><strong>Bright Interior</strong><span>Welcoming clinic atmosphere</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+<section id="about" style="background:var(--surface)">
+    <div class="section reveal">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-visual-inner"><span>🏥</span>Dr. Priya Shetty<br><span style="font-size:.72rem;display:block;margin-top:6px;opacity:.72">BDS, MDS · 15 Years Experience</span></div>
+          <div class="about-gold-bar"></div>
+          <div class="about-badge"><div class="about-badge-num">15+</div><div class="about-badge-text">Years of<br>Excellence</div></div>
+        </div>
+        <div class="about-content">
+          <div class="section-eyebrow">Meet Your Doctor</div>
+          <h2 class="section-title">Dr. Priya Shetty,<br><em>BDS, MDS</em></h2>
+          <div class="about-quote">"Every patient deserves a smile they're proud of. My job is to make that happen safely, comfortably, and beautifully."</div>
+          <p style="color:var(--muted);line-height:1.85;font-size:.92rem">With over 15 years of practice in Mangalore, Dr. Priya Shetty is one of the city's most trusted names in cosmetic and restorative dentistry. She completed her MDS in Prosthodontics from Manipal University and has trained in smile design techniques in Singapore and Mumbai.</p>
+          <div class="about-tags"><span class="tag">Cosmetic Specialist</span><span class="tag">Implantologist</span><span class="tag">Invisalign Certified</span><span class="tag">Pain-Free Expert</span></div>
+          <div style="margin-top:36px"><a class="btn-primary" href="#booking">Book With Dr. Priya →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div style="max-width:1240px;margin:0 auto;padding:110px 64px" class="reveal">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title" style="color:#fff">From first visit to<br><em>perfect smile.</em></h2>
+      <div class="process-grid">
+        <div class="process-step" data-num="01"><div class="ps-line"></div><div class="ps-icon">📞</div><div class="ps-title">Book Online</div><div class="ps-desc">Pick your preferred date and time via our booking form or WhatsApp. We confirm within 30 minutes.</div></div>
+        <div class="process-step" data-num="02"><div class="ps-line"></div><div class="ps-icon">🔍</div><div class="ps-title">Free Consultation</div><div class="ps-desc">Your first visit includes a full dental exam, X-rays and a personalised treatment plan — at no charge.</div></div>
+        <div class="process-step" data-num="03"><div class="ps-line"></div><div class="ps-icon">⚕️</div><div class="ps-title">Treatment</div><div class="ps-desc">All procedures use the latest equipment with sedation options available for anxious patients.</div></div>
+        <div class="process-step" data-num="04"><div class="ps-line"></div><div class="ps-icon">💎</div><div class="ps-title">Aftercare</div><div class="ps-desc">We follow up after every major treatment. Your long-term oral health is our ongoing responsibility.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="section reveal">
+      <div class="section-eyebrow">Patient Stories</div>
+      <h2 class="section-title">Real smiles.<br><em>Real results.</em></h2>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"I was terrified of dentists for years. Dr. Priya and her team made me feel completely at ease. My smile makeover changed my confidence."</div><div class="testi-person"><div class="testi-avatar">RK</div><div><div class="testi-name">Rohit Kumar</div><div class="testi-role">Smile Makeover · Mangalore</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"The implant procedure was painless and the result looks completely natural. Best dental experience I've had in 20 years."</div><div class="testi-person"><div class="testi-avatar">AS</div><div><div class="testi-name">Anitha Shetty</div><div class="testi-role">Dental Implant · Udupi</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"My daughter was nervous but the team was so patient with her. She now looks forward to her dental visits. Highly recommended for families."</div><div class="testi-person"><div class="testi-avatar">PM</div><div><div class="testi-name">Padma Menon</div><div class="testi-role">Paediatric Care · Mangalore</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="booking-wrap reveal">
+      <div>
+        <div class="section-eyebrow">Get In Touch</div>
+        <h2 class="section-title">Book your free<br><em>consultation today.</em></h2>
+        <p class="section-lead">No obligation. No charges for the first visit. Just a conversation about your smile goals.</p>
+        <div class="booking-features">
+          <div class="bf-item"><div class="bf-dot"></div>Free first consultation — no charges</div>
+          <div class="bf-item"><div class="bf-dot"></div>Same-day appointments available</div>
+          <div class="bf-item"><div class="bf-dot"></div>Evening slots Mon–Sat until 7pm</div>
+          <div class="bf-item"><div class="bf-dot"></div>WhatsApp confirmation within 30 min</div>
+          <div class="bf-item"><div class="bf-dot"></div>EMI options available for major treatments</div>
+        </div>
+        <div style="margin-top:44px;padding-top:36px;border-top:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.3);margin-bottom:14px">Find Us</div>
+          <div style="color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.9;font-weight:500">SmileCraft Dental Studio<br>2nd Floor, Shetty Complex<br>Hampankatta, Mangalore — 575 001<br><br>📞 +91 98765 43210<br>📱 WhatsApp: wa.me/919876543210</div>
+        </div>
+      </div>
+      <div class="booking-form">
+        <div class="form-title">Request an Appointment</div>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+          <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="+91 98XXX XXXXX"></div>
+        </div>
+        <div class="form-group"><label>Service Needed</label><select><option>Free Consultation</option><option>Teeth Cleaning</option><option>Teeth Whitening</option><option>Dental Implant</option><option>Braces / Aligners</option><option>Root Canal</option><option>Emergency Care</option><option>Other</option></select></div>
+        <div class="form-row">
+          <div class="form-group"><label>Preferred Date</label><input type="date"></div>
+        <div class="form-group"><label>Preferred Time</label><select><option>Morning (9am–12pm)</option><option>Afternoon (12–4pm)</option><option>Evening (4–7pm)</option></select></div>
+        </div>
+        <div class="form-group"><label>Notes for the doctor?</label><textarea rows="3" placeholder="Describe your concern briefly..."></textarea></div>
+        <button class="form-submit" onclick="bookViaWA()">Book via WhatsApp →</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div><div class="footer-logo">Smile<span>Craft</span> Dental</div><div class="footer-tagline">Premium dental care in Mangalore since 2009.</div></div>
+        <div class="footer-links">
+          <div class="footer-col"><h4>Services</h4><a href="#services">Cosmetic Dentistry</a><a href="#services">Dental Implants</a><a href="#services">Orthodontics</a><a href="#services">Emergency Care</a></div>
+          <div class="footer-col"><h4>Clinic</h4><a href="#about">Our Doctors</a><a href="#process">How It Works</a><a href="#testimonials">Patient Reviews</a><a href="#booking">Book Appointment</a></div>
+          <div class="footer-col"><h4>Contact</h4><a href="tel:+919876543210">+91 98765 43210</a><a href="#">WhatsApp Us</a><a href="#">Mon–Sat 9am–7pm</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 SmileCraft Dental Studio · Mangalore</div>
+        <div class="footer-made">Website by <span>Nex Studio</span> · nexstudio.co.in</div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/919876543210?text=Hi%20SmileCraft!%20I'd%20like%20to%20book%20a%20dental%20appointment." target="_blank" rel="noopener">💬</a>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    function bookViaWA() {
+      const name = document.querySelector('input[placeholder="Your name"]').value || 'Patient';
+      const service = document.querySelector('select').value;
+      const msg = `Hi SmileCraft Dental! 👋\n\nI'd like to book an appointment.\n\nName: ${name}\nService: ${service}\n\nPlease confirm my slot. Thank you!`;
+      window.open('https://wa.me/919876543210?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    }
+  </script>
+</body>
+</html>
+
